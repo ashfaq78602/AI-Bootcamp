@@ -1,0 +1,8 @@
+Hello, World!!!SliceRobPerry file.
+You can use this file to practice reading and writing operations.
+
+Line 1: The quick brown fox jumps over the lazy dog.
+Line 2: Python makes file handling simple and powerful.
+Line 3: Always remember to close your files after use.
+
+End of sample file.
