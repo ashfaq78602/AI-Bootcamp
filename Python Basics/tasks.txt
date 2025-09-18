@@ -1,2 +1,0 @@
-1 | Buy Milk | Incomplete 
-3 | Get Car Wash | Incomplete 
