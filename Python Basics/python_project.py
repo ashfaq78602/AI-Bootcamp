@@ -13,16 +13,26 @@
 # print(add(3,5))
 
 #map() - applies a function to each item in an iterable
-numbers = [1,2,3,4]
-squares = map(lambda x: x**2, numbers)
-print(list(squares))
+# numbers = [1,2,3,4]
+# squares = map(lambda x: x**2, numbers)
+# print(list(squares))
 
 #filter() - filters item based on a condiion
-evenList = filter(lambda x: x % 2 == 0, numbers)
-print(list(evenList))
+# evenList = filter(lambda x: x % 2 == 0, numbers)
+# print(list(evenList))
 
 
 #reduce() - reduces iterable list to a single number
-from functools import reduce
-product = reduce(lambda x, y: x * y, numbers)
-print(product)
+# from functools import reduce
+# product = reduce(lambda x, y: x * y, numbers)
+# print(product)
+
+
+#os and sys modules
+import os
+
+print(os.getcwd())
+os.mkdir("test_dire")
+os.remove("file.txt")
+os.remove("test_dir")
+os.remove("test_dire2")
