@@ -43,7 +43,7 @@
 
 
 #Project 1 : Command-Line Task Manager
-import os
+import os, csv, json
 from datetime import date
 
 #File to store tasks
@@ -56,7 +56,7 @@ def load_tasks():
         with open(FILE_NAME, "r") as file:
             for line in file:
                 task_id, title, status, priority, deadline = line.strip().split("|")
-                tasks[int(task_id)] = {"title": title, "status": status, "priority": priority, "deadline": deadline}
+                tasks[int(task_id)] = {"title": title.strip(), "status": status.strip(), "priority": priority.strip(), "deadline": deadline.strip()}
     return tasks
 
 #Save tasks to file
@@ -130,6 +130,40 @@ def delete_task(tasks):
     else: 
         print("Task ID not found.")
 
+#Save data to CSV 
+def save_to_csv():
+    csv_file = "data.csv"
+    tasks = load_tasks()
+    with open(csv_file, "w") as file:
+        writer = csv.writer(file)
+        writer.writerow(["Task ID", "Title", "Status", "Priority", "Deadline"])
+        
+        #Convert to list of dictionaries
+        for task_id, task in tasks.items():
+            writer.writerow([
+                task_id,
+                task["title"].strip(),
+                task["status"].strip(),
+                task["priority"].strip(),
+                task["deadline"].strip()
+            ])
+    print("Data saved to CSV.")
+    
+#Save data to JSON
+def save_to_json():
+    json_file = "data.json"        
+    tasks = load_tasks()
+    
+    data = []
+    for task_id, task in tasks.items():
+        task_copy = task.copy()
+        task_copy['task_id'] = task_id
+        data.append(task_copy)
+    
+    with open(json_file, "w") as file:
+        json.dump(data, file, indent=4)
+    print("Data saved in JSON file.")
+    
 #Main Menu
 def main():
     tasks = load_tasks()
@@ -141,7 +175,8 @@ def main():
         print("4. Set Priority")
         print("5. Set Deadline")
         print("6. Delete Task")
-        print("7. Exit")
+        print("7. Save Data in CSV or JSON")
+        print("8. Exit")
         choice = input("Enter your choice: ")
         
         if choice == "1":
@@ -157,6 +192,13 @@ def main():
         elif choice == "6":
             delete_task(tasks)
         elif choice == "7":
+            save_tasks(tasks)
+            csv_json = int(input("Enter 1 for CSV and 2 for JSON"))
+            if csv_json == 1:
+                save_to_csv()
+            elif csv_json == 2:
+                save_to_json()
+        elif choice == "8":
             save_tasks(tasks)
             print("Goodbye!!!")
             break
