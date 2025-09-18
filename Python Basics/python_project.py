@@ -28,11 +28,15 @@
 # print(product)
 
 
-#os and sys modules
-import os
+#os modules - provides functions to iteract with the operating system
+# import os
 
-print(os.getcwd())
-os.mkdir("test_dire")
-os.remove("file.txt")
-os.remove("test_dir")
-os.remove("test_dire2")
+# print(os.getcwd())
+# os.mkdir("test_dire")
+# os.remove("file.txt")
+
+#sys Module - provides access to system-specific parameters and functions
+import sys
+
+print(sys.argv)
+print(sys.version)
